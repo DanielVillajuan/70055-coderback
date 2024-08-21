@@ -4,7 +4,6 @@ import { UserModel } from "../models/user.model.js";
 const app = Router();
 
 app.get('/getSession', (req, res) => {
-    console.log(req.session) // {}
     res.json({ session: req.session });
 })
 
@@ -32,8 +31,7 @@ app.post('/login', async (req, res) => {
     try{
         const user = await UserModel.findOne({ email, password}).lean(); // aca busca, si encuentra devuelve el obejto sino un null
         if(!user) return res.status(404).json({message: 'ingreso mal el mail o contraseña'});
-        console.log(req.session)
-        if(!req?.session?.isLog){
+        if(!req.session.isLog){
             req.session.isLog = true;
             req.session.user = {
                 nombre: user.nombre,
@@ -41,7 +39,7 @@ app.post('/login', async (req, res) => {
                 edad: user.edad
             };
         }
-        res.json({ message: 'logueado' })
+        res.json({ message: 'logueado' });
     }catch (e){
         console.log(e)
         res.status(500).json({message: 'error al loguearse'})

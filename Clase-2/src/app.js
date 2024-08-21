@@ -10,16 +10,6 @@ import mongoose from 'mongoose';
 const hbs = create();
 const app = express();
 
-app.engine('handlebars', hbs.engine);
-app.set('views', __dirname + '/views');
-app.set('view engine', 'handlebars');
-app.use(express.static(__dirname + '/public'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-app.use('/', ViewRouter);
-app.use('/api/sessions/', SessionsRouter);
-
 app.use(session({  
     store: MongoStore.create({
         mongoUrl: 'mongodb+srv://danielvillajuan:qpCcWENKy5dp6gRi@coderback.dkldvkl.mongodb.net/?retryWrites=true&w=majority&appName=Coderback',
@@ -31,26 +21,15 @@ app.use(session({
     saveUninitialized: false,
 }));
 
-// app.get('/session', (req, res) => {
-//     if(!req.session.isFirst){
-//         req.session.isFirst = true;
-//         res.send('Bienvenido esta es tu primera vez')
-//     }else {        
-//         res.send('Ya estuviste por aca...')
-//     }
-// })
+app.engine('handlebars', hbs.engine);
+app.set('views', __dirname + '/views');
+app.set('view engine', 'handlebars');
+app.use(express.static(__dirname + '/public'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// app.get('/deleteSession', (req, res) => {
-//     req.session.destroy((error) => {
-//         if(error) res.send('No se pudo eliminar la session')
-//         else res.send('Session eliminada')
-//     })
-// })
-
-// app.post('/login', (req, res) => {
- 
-
-// })
+app.use('/', ViewRouter);
+app.use('/api/sessions/', SessionsRouter);
 
 app.listen(8080, () => {
     console.log('Servidor en 8080')
