@@ -36,8 +36,7 @@ const initPassport = () => {
     }))
 
     passport.use('login', new localStrategy({
-        usernameField: 'email',
-        passReqToCallback: true // quiere decir que el objeto req se podra pasar a otros mmiddleware
+        usernameField: 'email'
     }, async (username, password, done) => {
         try{
             const userFound = await UserModel.findOne({email: username });

@@ -25,6 +25,7 @@ app.post('/login', passport.authenticate('login',{ failureRedirect: '/failLogin'
         edad: req.user.edad,
         email: req.user.email
     }
+    req.session.isLog = true
 
     res.status(200).json({message: 'logueado'})
 
