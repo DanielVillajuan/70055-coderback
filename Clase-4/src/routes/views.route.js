@@ -5,7 +5,9 @@ const app = Router();
 
 
 app.get('/', (req, res) => {
-    res.render('home', {})
+    res.render('home', {
+        user: req?.session?.user
+    })
 })
 
 app.get('/login', isLog,(req, res) => {
