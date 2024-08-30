@@ -8,9 +8,13 @@ import { __dirname } from './utils.js';
 import mongoose from 'mongoose';
 import passport from 'passport';
 import initPassport from './config/passport.config.js';
+import cors from 'cors'
 
 const hbs = create();
 const app = express();
+app.use(
+    cors({origin: ['http://localhost:8080', 'http://127.0.0.1:8080']})
+  )
 
 app.use(session({  
     store: MongoStore.create({
