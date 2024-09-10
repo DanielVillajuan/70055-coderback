@@ -1,13 +1,24 @@
-import { Router } from "express";
+// import { Router } from "express";
 import { login, register } from "../controllers/user.controller.js";
 
-const app = Router();
+import CustomRouter from "./customRouter.js"
 
-app.post('/login', login)
-app.post('/register', register)
+// const app = Router();
 
-app.get('/:id',(req, res) => {
-    res.send(req.params.id)
-})
+// app.post('/login', login)
+// app.post('/register', register)
 
-export default app
+// app.get('/:id', (req, res) => {
+//     res.send(req.params.id)
+// })
+
+export default class UserRouterCustom extends CustomRouter {
+    init(){
+        this.post('/login',login);
+        this.post('/register',register);
+        
+        this.get('/:id', (req, res) => {
+            res.send('Saludos desde el user router custom')
+        })
+    }
+}
