@@ -1,5 +1,5 @@
 import { Router } from "express";
-
+import jwt from 'jsonwebtoken';
 
 export default class CustomRouter { // clase abstracta
 
@@ -14,12 +14,19 @@ export default class CustomRouter { // clase abstracta
 
     init(){}
 
-    get(path,...cb){ // ...cb -> rest operator []
-        this.router.get(path, this.applyCallbacks(cb))
+    get(path, policies,...cb){ // ...cb -> rest operator []
+        this.router.get(path, this.handlePolicies(policies), this.customResponses, this.applyCallbacks(cb))
     }
 
-    post(path,...cb){ // ...cb -> rest operator []
-        this.router.post(path, this.applyCallbacks(cb))
+    post(path,policies,...cb){
+        this.router.post(path, this.handlePolicies(policies), this.customResponses, this.applyCallbacks(cb))
+    }
+
+    put(path,policies,...cb){
+        this.router.post(path, this.handlePolicies(policies), this.customResponses, this.applyCallbacks(cb))
+    }
+    delete(path,policies,...cb){
+        this.router.post(path, this.handlePolicies(policies), this.customResponses, this.applyCallbacks(cb))
     }
 
     applyCallbacks(cb){
@@ -31,5 +38,27 @@ export default class CustomRouter { // clase abstracta
             }
         })
     }
+
+    customResponses(req, res, next) {
+        res.success = payload => res.json({ status: 'success', payload })
+        res.errorServer = error => res.status(500).json({ status: 'server error', error })
+        res.notFound = () => res.status(404).json({ status: 'not found', error: 'Recurso no encontrado' })
+        // otras respuestas genericas.
+        next();
+    }
+
+    handlePolicies(policies) { // ['PUBLIC','ADMIN','USER','SUPERADMIN']
+        return (req, res, next) => {
+                if(policies.includes('PUBLIC')) return next();
+                const reqJWT = req.headers.authorization // si me da un jwt es porque se logueo o almenos estuvo loqueado
+                if(!reqJWT) return res.status(400).send({status:'error', message: 'no logueado' })
+                
+                const userPayload = jwt.verify(reqJWT, 'SECRETO')
+                if(!userPayload) return res.status(400).send({status:'error', message: 'error en el token' })  
+                if(!policies.includes(userPayload.rol.toUpperCase())) return res.status(403).send({status:'error', message:'no estas autorizado'})
+                req.user = userPayload
+                next();
+            }
+    }   
 
 }

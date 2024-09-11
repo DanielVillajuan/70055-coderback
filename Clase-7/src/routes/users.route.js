@@ -14,11 +14,11 @@ import CustomRouter from "./customRouter.js"
 
 export default class UserRouterCustom extends CustomRouter {
     init(){
-        this.post('/login',login);
-        this.post('/register',register);
-        
-        this.get('/:id', (req, res) => {
-            res.send('Saludos desde el user router custom')
+        this.post('/login',['PUBLIC'],login);
+        this.post('/register',['PUBLIC'],register);
+
+        this.get('/:id',['USER'], (req, res) => {
+            res.success(req.params.id);
         })
     }
 }
