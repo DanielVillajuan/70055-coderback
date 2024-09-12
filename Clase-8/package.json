@@ -6,14 +6,16 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/app.js",
-    "build:prod": "nodemon src/app.js --mode prod"
+    "dev": "nodemon src/app.js --mode local",
+    "build:prod": "nodemon src/app.js --mode prod",
+    "build:qa": "nodemon src/app.js --mode qa"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "commander": "^12.1.0",
+    "dotenv": "^16.4.5",
     "express": "^4.21.0",
     "nodemon": "^3.1.4"
   }

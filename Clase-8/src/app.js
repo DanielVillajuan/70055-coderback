@@ -1,14 +1,10 @@
 import express from 'express';
+import config from './config.js'
 const app = express();
 
-const PORT = 8080;
+const PORT = config.PORT;
 
-app.get('/', (req, res) => {
-    res.send('home')
-})
-
-console.log(process.argv)
-
+console.log(PORT)
 app.listen(PORT, () => {
     console.log('server on ' + PORT)
 })
