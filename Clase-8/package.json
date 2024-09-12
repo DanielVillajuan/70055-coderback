@@ -1,0 +1,20 @@
+{
+  "name": "clase-8",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/app.js",
+    "build:prod": "nodemon src/app.js --mode prod"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^12.1.0",
+    "express": "^4.21.0",
+    "nodemon": "^3.1.4"
+  }
+}
