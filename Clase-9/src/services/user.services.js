@@ -2,7 +2,7 @@ import { generadorToken, isValidPassword } from "../utils.js";
 import UserAccessMongo from "../models/user.dao.js";
 import Services from "./services.js";
 
-const userDAO = UserAccessMongo();
+const userDAO = new UserAccessMongo();
 
 export default class UserService extends Services {
   constructor(){

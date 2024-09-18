@@ -1,5 +1,5 @@
-import MongoDao from "./dao"
-import { UserModel } from "./user.model"
+import MongoDao from "./dao.js"
+import { UserModel } from "./user.model.js"
 
 export default class UserAccessMongo extends MongoDao {
     constructor(){

@@ -1,7 +1,8 @@
-import { createResponse } from "../utils";
+import { createResponse } from "../utils.js";
+
 
 export default class Controllers {
-  constructor(service) {
+  constructor(service) { // recibe el servicio del hijo
     this.service = service;
   }
 
