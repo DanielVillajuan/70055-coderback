@@ -1,11 +1,11 @@
 import { Router } from "express";
 import { ROUTE_PATH } from "../constants/routesPath.js";
-import UserRouterCustom from "./users.route.js";
+import ContactRouter from "./contacts.route.js";
 const app = Router()
 
-const UserRouter = new UserRouterCustom();
+const contactRoute = new ContactRouter;
 
-app.use(ROUTE_PATH.api_users, UserRouter.getRouter())
+app.use(ROUTE_PATH.contact, contactRoute.getRouter())
 
 
 export default app

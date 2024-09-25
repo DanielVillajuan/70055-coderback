@@ -1,6 +1,5 @@
 import { createResponse } from "../utils.js";
 
-
 export default class Controllers {
   constructor(service) {
     this.service = service;

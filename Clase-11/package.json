@@ -6,7 +6,8 @@
   "main": "/src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./src/app.js"
+    "dev:memory": "nodemon ./src/app.js --memory",
+    "dev:mongo": "nodemon ./src/app.js --mongo"
   },
   "keywords": [],
   "author": "",
