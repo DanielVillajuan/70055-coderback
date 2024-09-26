@@ -1,4 +1,5 @@
 export const ROUTE_PATH = {
-    view: '/users',
-    contact: '/contacts'
+    users: '/api/usersRouter',
+    business: '/api/business',
+    orders: '/api/orders'
 }
