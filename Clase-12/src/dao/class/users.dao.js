@@ -20,7 +20,7 @@ export default class User {
     }
     saveUser = async(user) => {
         try{
-            await UserModel.create(user)
+            return await UserModel.create(user)
         }catch (e){
             console.log(e)
             return null
@@ -28,7 +28,7 @@ export default class User {
     }
     updateUser = async(id, user) => {
         try{
-            await UserModel.updateOne({ _id: id }, {$set: user })
+            return await UserModel.updateOne({ _id: id }, {$set: user }, {new: true})
         }catch (e){
             console.log(e)
             return null

@@ -7,7 +7,7 @@ const UserSchema = new Schema({
     email: String,
     role: String,
     orders: [{
-        type: mongoose.SchemaType.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Orders'
     }]
 })

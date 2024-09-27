@@ -20,7 +20,7 @@ export default class Orders {
     }
     createOrder = async(order) => {
         try{
-            await OrdersModel.create(order)
+            return await OrdersModel.create(order)
         }catch (e){
             console.log(e)
             return null
@@ -28,7 +28,7 @@ export default class Orders {
     }
     resolveOrders = async(id, order) => {
         try{
-            await OrdersModel.updateOne({ _id: id }, {$set: order })
+            await OrdersModel.updateOne({ _id: id }, {$set: order },{ new: true })
         }catch (e){
             console.log(e)
             return null

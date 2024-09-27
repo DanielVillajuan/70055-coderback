@@ -6,12 +6,13 @@ const OrdersSchema = new Schema({
     number:Number,
     totalPrice: Number,
     products: [],
+    status: String,
     business: {
-        type: mongoose.SchemaType.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Business'
     },
     user: {
-        type: mongoose.SchemaType.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Users'
     }
 })

@@ -20,7 +20,7 @@ export default class Business {
     }
     saveBusiness = async(business) => {
         try{
-            await BusinessModel.create(business)
+            return await BusinessModel.create(business)
         }catch (e){
             console.log(e)
             return null
@@ -28,7 +28,7 @@ export default class Business {
     }
     updateBusiness = async(id, business) => {
         try{
-            await BusinessModel.updateOne({ _id: id }, {$set: user })
+            await BusinessModel.updateOne({ _id: id }, {$set: business })
         }catch (e){
             console.log(e)
             return null
