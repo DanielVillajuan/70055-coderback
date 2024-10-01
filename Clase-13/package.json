@@ -6,6 +6,7 @@
   "main": "/src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./src/app.js",
     "dev:memory": "nodemon ./src/app.js --memory",
     "dev:mongo": "nodemon ./src/app.js --mongo"
   },
@@ -15,6 +16,8 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "nodemon": "^3.1.4"
+    "nodemailer": "^6.9.15",
+    "nodemon": "^3.1.4",
+    "twilio": "^5.3.2"
   }
 }
